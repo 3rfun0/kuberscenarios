@@ -1,14 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-    name: hello-svc
-    labels:
-        app: hello-world
+  name: nginx-service
 spec:
-     type: NodePort
-     ports:
-     - port: 8080
-        nodePort: 30001
-        protocol: TCP
-     selector:
-          app: nginx
+  type: NodePort
+  selector:
+    app: nginx
+  ports:
+    - protocol: TCP
+      port: 80
+      nodePort: 30001
+      targetPort: 9376
