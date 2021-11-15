@@ -13,8 +13,8 @@ data:
       server {
           listen       80;
           server_name  localhost;
-          location /usr/share/nginx/html {
-            root   html;
+          location / {
+            root   /usr/share/nginx/html;
             index  index.html index.htm;
         }
       }
