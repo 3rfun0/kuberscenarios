@@ -28,7 +28,7 @@ spec:
       name: webroot
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      storageClassName: "flash"
+      storageClassName: "managed-nfs-storage"
       resources:
         requests:
           storage: 1Gi
