@@ -1,0 +1,22 @@
+apiVersion: types.kubefed.io/v1beta1
+kind: FederatedService
+metadata:
+ name: federated-svc1
+ namespace: myfedns
+spec:
+ template:
+   metadata:
+     name: service1
+     labels:
+       app: hello1
+   spec:
+     ports:
+     - name: http
+       port: 80
+       targetPort: 8080
+     selector:
+       app: hello1
+ placement:
+   clusters:
+   - name: fedhost
+   - name: member1
