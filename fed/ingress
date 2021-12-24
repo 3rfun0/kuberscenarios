@@ -1,0 +1,26 @@
+apiVersion: types.kubefed.io/v1beta1
+kind: FederatedIngress
+metadata:
+ name: federated-ing1
+ namespace: myfedns
+spec:
+ template:
+   annotations:
+     kubernetes.io/ingress.class: nginx
+     nginx.ingress.kubernetes.io/ssl-redirect: "false"
+     nginx.ingress.kubernetes.io/rewrite-target: /$2
+   spec:
+     rules:
+     - http:
+         paths:
+         - path: /test(/|$)(.*)
+           pathType: Prefix
+           backend:
+             service:
+               name: federated-svc1
+               port:
+                 number: 8080
+ placement:
+   clusters:
+   - name: fedhost
+   - name: member1
