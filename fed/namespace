@@ -1,0 +1,10 @@
+apiVersion: types.kubefed.io/v1beta1
+kind: FederatedNamespace
+metadata:
+ name: myfedns
+ namespace: myfedns
+spec:
+ placement:
+   clusters:
+   - name: fedhost
+   - name: member1
