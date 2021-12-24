@@ -1,0 +1,36 @@
+apiVersion: types.kubefed.io/v1beta1
+kind: FederatedDeployment
+metadata:
+ name: federated-deploy1
+ namespace: myfedns
+spec:
+ template:
+   metadata:
+     name: deploy1
+   spec:
+     replicas: 1
+     selector:
+       matchLabels:
+         app: hello1
+         version: v1
+     template:
+       metadata:
+         labels:
+           app: hello1
+           version: v1
+       spec:
+         containers:
+         - image: nginxdemos/nginx-hello
+           imagePullPolicy: IfNotPresent
+           name: hello1
+           ports:
+           - containerPort: 8080
+ placement:
+   clusters:
+   - name: fedhost
+   - name: member1
+ overrides:
+   - clusterName: master
+     clusterOverrides:
+     - path: "/spec/replicas"
+       value: 2
